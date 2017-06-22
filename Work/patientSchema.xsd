@@ -1,0 +1,353 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <xs:element name="patient">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="patients" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="img">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="([i][m][g][/](([A-Za-z]+)*(\.)(png|jpg|bmp|gif)))"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="filecode" maxOccurs="1" >
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="[A-Z]{1}[0-9]{4}"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            
+                            <xs:element name="firstname" maxOccurs="1">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="([A-Z][a-z][a-z]+[ ]*)+"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <xs:element name="lastname" maxOccurs="1" >
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="([A-Z][a-z][a-z]+[ ]*)+"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <xs:element name="dob" maxOccurs="1">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="([0-2]{1}[0-9]{3}-[0,1]{1}[0-9]{1}-[0-3]{1}[0-9]{1})"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <xs:element name="gender" >
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="Male"/>
+                                        <xs:enumeration value="Female"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                       
+                
+                            <xs:element name="address" minOccurs="1">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="street" >
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">                                        
+                                                    <xs:whiteSpace value="replace"/>
+                                                    <xs:minLength value="1"/>
+                                                    <xs:maxLength value="30"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                            
+                                        <xs:element name="city">  
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">                                        
+                                                    <xs:whiteSpace value="replace"/>
+                                                    <xs:minLength value="1"/>
+                                                    <xs:maxLength value="15"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>                              
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                
+                            <xs:element name="phone" >
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="cell" >
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:integer">
+                                                    <xs:pattern value="([5]{1}[0-9]{7})"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="home">  
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:integer">
+                                                    <xs:pattern value="([0-9]{7})"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                            
+                                        <xs:element name="work"> 
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:integer">
+                                                    <xs:pattern value="([0-9]{7})"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>                              
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>                
+                
+                            <xs:element name="email" minOccurs="1" maxOccurs="3" >
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="([^@]+@[^\.]+\..+)"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                
+                            <xs:element name="medicalhistory" type="xs:string" maxOccurs="3" default="e.g: any surgery, taking any pills"/>
+                
+                            <xs:element name="allergies" type="xs:string" maxOccurs="3" default="e.g:drug allergies"/>
+                
+                            <xs:element name="bloodgroup" maxOccurs="1" >
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="1"/>
+                                        <xs:maxLength value="3"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                
+                            <xs:element name="spousenamem">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="firstname" maxOccurs="1" >
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:pattern value="([A-Z][a-z][a-z]+[ ]*)*"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                
+                                        <xs:element name="lastname" maxOccurs="1">  
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:pattern value="([A-Z][a-z][a-z]+[ ]*)*"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element> 
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                
+                            <xs:element name="occupation" maxOccurs="3" >
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="field" type="xs:string" />
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            
+                            <xs:element name="employ" >
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="firstname" >
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:pattern value="([A-Z][a-z][a-z]+[ ]*)+"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                
+                                        <xs:element name="lastname" >
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:pattern value="([A-Z][a-z][a-z]+[ ]*)+"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                
+                                        <xs:element name="phone">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="cell" maxOccurs="3">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:integer">
+                                                                <xs:pattern value="([5]{1}[0-9]{7})"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="home">  
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:integer">
+                                                                <xs:pattern value="([0-9]{7})"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                            
+                                                    <xs:element name="work"> 
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:integer">
+                                                                <xs:pattern value="([0-9]{7})"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>                              
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+
+                                        <xs:element name="address" maxOccurs="3">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="street" >
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">                                        
+                                                                <xs:whiteSpace value="replace"/>
+                                                                <xs:minLength value="1"/>
+                                                                <xs:maxLength value="30"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+
+                                                    <xs:element name="city">  
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">                                        
+                                                                <xs:whiteSpace value="replace"/>
+                                                                <xs:minLength value="1"/>
+                                                                <xs:maxLength value="15"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>                                
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>    
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            
+                            <xs:element name="emergence">    
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="firstname" maxOccurs="1">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:pattern value="([A-Z][a-z][a-z]+[ ]*)+"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+
+                                        <xs:element name="lastname" maxOccurs="1" >
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:pattern value="([A-Z][a-z][a-z]+[ ]*)+"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+
+                                        <xs:element name="address" maxOccurs="3">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="street" >
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">                                        
+                                                                <xs:whiteSpace value="replace"/>
+                                                                <xs:minLength value="1"/>
+                                                                <xs:maxLength value="30"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+
+                                                    <xs:element name="city">  
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">                                        
+                                                                <xs:whiteSpace value="replace"/>
+                                                                <xs:minLength value="1"/>
+                                                                <xs:maxLength value="15"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>                              
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>                
+
+                                        <xs:element name="phone">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="cell" maxOccurs="3">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:integer">
+                                                                <xs:pattern value="([5]{1}[0-9]{7})"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+
+                                                    <xs:element name="home">  
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:integer">
+                                                                <xs:pattern value="([0-9]{7})"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element> 
+
+                                                    <xs:element name="work">  
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:integer">
+                                                                <xs:pattern value="([0-9]{7})"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>                                
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+
+                                        <xs:element name="email" maxOccurs="3" >
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:pattern value="([^@]+@[^\.]+\..+)"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+        <xs:unique name="uniqueImg">
+            <xs:selector xpath="patients"/>
+            <xs:field xpath="img"/>
+        </xs:unique>
+        <xs:unique name="uniqueFilecode">
+            <xs:selector xpath="patients"/>
+            <xs:field xpath="filecode"/>
+        </xs:unique>
+    </xs:element>
+</xs:schema>
